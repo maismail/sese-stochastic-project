@@ -1,0 +1,13 @@
+set terminal png truecolor enhanced 
+set output 'sampleRosenbrockTSA.png' 
+set auto x
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "X"
+set ylabel "Y"
+set zlabel "F"
+set title "TabuSimulatedAnnealing for Branin Function" 
+set grid x y z
+set key top box
+
+splot 'RosenbrockFunction-TabuSimulatedAnnealing-RandomSampler-samples.dat' using 2:3:4 title 'TS-Accepted' w p, '' using 8:9:10 title 'TS-Rejected' w p
+

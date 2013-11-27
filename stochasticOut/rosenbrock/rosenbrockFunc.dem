@@ -1,0 +1,13 @@
+set terminal png truecolor enhanced 
+set output 'rosenbrock.png' 
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "X"
+set ylabel "Y"
+set zlabel "F"
+set title "Ronsenbrock Function" 
+set grid x y z
+set key top box
+set xrange [0:5]
+set yrange [0:5]
+splot (1 - x)**2 + 100 * ((y - x**2)**2) title '' with lines
+

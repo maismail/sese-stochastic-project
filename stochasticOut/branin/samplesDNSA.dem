@@ -1,0 +1,12 @@
+set terminal png truecolor enhanced 
+set output 'sampleBraninDNSA.png' 
+set auto x
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "X"
+set ylabel "Y"
+set zlabel "F"
+set title "Simulated Annealing with dynamic neighbor selection for Branin Function" 
+set grid x y z
+set key top box
+
+splot 'BraninFunction-DynamicNeighborSimulatedAnnealing-RandomSampler-samples.dat' using 2:3:4 title 'Accepted' w p, '' using 8:9:10 title 'Rejected' w p

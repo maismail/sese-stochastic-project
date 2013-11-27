@@ -1,0 +1,12 @@
+set terminal png truecolor enhanced 
+set output 'rosenbrock_sa_ts.png' 
+set auto x
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "Iteration"
+set ylabel "Function Value"
+set title "Rosenbrock Function" 
+set grid x y 
+set key top box
+set xrange[0:100]
+
+plot 'RosenbrockFunction-DynamicNeighborSimulatedAnnealing-RandomSampler-samples.dat' using 1:4 title 'DynamicNeighborSA-Points' w lp, 'RosenbrockFunction-TabuSearch-RandomSampler-samples.dat' using 1:4 title 'TS-Points' w lp, 0 title "Solution" w l

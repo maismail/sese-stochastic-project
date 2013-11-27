@@ -1,0 +1,11 @@
+set terminal png truecolor enhanced 
+set output 'cyclonClustering.png' 
+set auto x
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "Cycle"
+set ylabel "clusteringCoeff"
+set title "Cyclon Convergence based on clusteringCoeff" 
+set grid x y 
+set key top box
+
+plot '13-run-31-46.dat' using 1:2 title 'S=31, C=46' w lp,  '21-run-15-26.dat' using 1:2 title 'S=15, C=26' w lp, '25-run-4-28.dat' using 1:2 title 'S=4, C=28' w lp, '26-run-3-12.dat' using 1:2 title 'S=3, C=12' w lp

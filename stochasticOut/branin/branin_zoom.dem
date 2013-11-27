@@ -1,0 +1,13 @@
+set terminal png truecolor enhanced 
+set output 'branin_sa_ts_zoom.png' 
+set auto x
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "Iteration"
+set ylabel "Function Value"
+set title "Branin Function" 
+set grid x y 
+set key top box
+set yrange[0:10]
+set xrange[0:100]
+
+plot 'BraninFunction-DynamicNeighborSimulatedAnnealing-RandomSampler-samples.dat' using 1:4 title 'DynamicNeighborSA-Points' w lp, 'BraninFunction-TabuSearch-RandomSampler-samples.dat' using 1:4 title 'TS-Points' w lp, 0.397887 title "Solution" w l

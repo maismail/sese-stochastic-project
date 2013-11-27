@@ -1,0 +1,14 @@
+set terminal png truecolor enhanced 
+set output 'cyclon_ts.png' 
+set auto x
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "Iteration"
+set ylabel "Cycles"
+set title "Cyclon" 
+set grid x y 
+set key top box
+set xrange[0:30]
+
+plot 'CyclonFunction-DynamicNeighborSimulatedAnnealing-RandomSampler-samples.dat' using 1:4 title 'DNSA-New' w lp, '' using 1:7 title 'DNSA-Best' w lp
+
+

@@ -1,0 +1,12 @@
+set terminal png truecolor enhanced 
+set output 'branin.png' 
+set xtics border in scale 1,0.5 nomirror rotate by -45  offset character 0, 0, 0 
+set xlabel "X"
+set ylabel "Y"
+set zlabel "F"
+set title "Branin Function" 
+set grid x y z
+set key top box
+set xrange [-5:10]
+set yrange [0:15]
+splot (y-(5.1/(4*pi**2))*x**2+5*x/pi-6)**2+10*(1-(1/(8*pi)))*cos(x)+10 title '' with lines
