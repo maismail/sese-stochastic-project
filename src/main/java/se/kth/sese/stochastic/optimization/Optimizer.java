@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import se.kth.sese.stochastic.objfunc.ObjectiveFunction;
+import se.kth.sese.stochastic.sampling.EvaluatedSamplePoint;
 import se.kth.sese.stochastic.sampling.SamplePoint;
 import se.kth.sese.stochastic.sampling.Sampler;
 
@@ -17,15 +18,17 @@ public abstract class Optimizer {
   public Optimizer(Sampler sampler, ObjectiveFunction func, File outDir) throws IOException {
     this.sampler = sampler;
     this.func = func;
-    sampleWriter = new BufferedWriter(new FileWriter(new File(outDir, sampler.getClass().getSimpleName() + "-samples.dat")));
+    sampleWriter = new BufferedWriter(new FileWriter(new File(outDir, func.getClass().getSimpleName() + "-" + this.getClass().getSimpleName() + "-" + sampler.getClass().getSimpleName() +"-samples.dat")));
+    sampleWriter.write("# Iteration newS newE bestS bestE rejectS rejectE");
+    sampleWriter.newLine();
   }
 
   public abstract SamplePoint getOptimal() throws IOException;
   
-   protected void writeSample(int it, SamplePoint p, double eval, boolean accepted) throws IOException{
-    String str = it + " " + p.toString() + " " + eval;
+   protected void writeSample(int it, EvaluatedSamplePoint sp, boolean accepted, EvaluatedSamplePoint best) throws IOException{
+    String str = it + " " + sp.toString() + " " + best.toString();
     if(!accepted)
-      str += " " + p.toString();
+      str += " " + sp.toString();
     sampleWriter.write(str);
     sampleWriter.newLine();
     sampleWriter.flush();

@@ -8,6 +8,6 @@ public class BraninFunction implements ObjectiveFunction {
   public double eval(SamplePoint p) {
     double x1 = p.getData()[0];
     double x2 = p.getData()[1];
-    return Math.pow((x2 - (5.1 / (4 * Math.pow(Math.PI, 2))) * Math.pow(x1, 2) + 5 * x1 / Math.PI - 6), 2) + 10 * (1 - 1 / (8 * Math.PI)) * Math.cos(x1) + 10;
+    return Math.pow((x2 - (5.1 / (4 * Math.pow(Math.PI, 2))) * Math.pow(x1, 2) + 5 * x1 / Math.PI - 6), 2) + 10 * (1 - (1 / (8 * Math.PI))) * Math.cos(x1) + 10;
   }
 }

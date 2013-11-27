@@ -14,7 +14,7 @@ public class LatinHypercube extends Sampler {
   private final int numSamples;
   private final List<List<Double>> data = new ArrayList<List<Double>>();
 
-  public LatinHypercube(double[] min, double[] max, boolean isInteger, int numSamples) {
+  public LatinHypercube(double[] min, double[] max, boolean[] isInteger, int numSamples) {
     super(min, max, isInteger);
     this.numSamples = numSamples;
     init();
@@ -28,7 +28,7 @@ public class LatinHypercube extends Sampler {
       List<Double> row = new ArrayList<Double>();
       for (int j = 0; j < numSamples; j++) {
         value = min[i] + (j - r.nextDouble()) * step;
-        if(isInteger())
+        if(isInteger(i))
           value = Math.round(value);
         row.add(value);
       }
@@ -45,4 +45,10 @@ public class LatinHypercube extends Sampler {
     }
     return new SamplePoint(sample);
   }
+
+  @Override
+  public SamplePoint getSample(SamplePoint center, double neighberhoodFactor) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
 }

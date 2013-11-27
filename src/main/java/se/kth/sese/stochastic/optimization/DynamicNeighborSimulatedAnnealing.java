@@ -7,11 +7,11 @@ import se.kth.sese.stochastic.sampling.EvaluatedSamplePoint;
 import se.kth.sese.stochastic.sampling.SamplePoint;
 import se.kth.sese.stochastic.sampling.Sampler;
 
-public class SimulatedAnnealing extends Optimizer{
+public class DynamicNeighborSimulatedAnnealing extends Optimizer{
 
   private final static int K = 1;
   private final int NUM_ITERATIONS;
-  public SimulatedAnnealing(Sampler sampler, ObjectiveFunction func, File outDir, int numIterations) throws IOException {
+  public DynamicNeighborSimulatedAnnealing(Sampler sampler, ObjectiveFunction func, File outDir, int numIterations) throws IOException {
     super(sampler, func, outDir);
     this.NUM_ITERATIONS = numIterations;
   }
@@ -24,7 +24,7 @@ public class SimulatedAnnealing extends Optimizer{
     for (int it = 0; it < NUM_ITERATIONS; it++) {
       System.out.println("SA ----- ITER = " + it + " T=" + t);
       
-      EvaluatedSamplePoint newS = generateNewSample();
+      EvaluatedSamplePoint newS = generateNewSample(curr, t/T0);
       
       System.out.println("SA ----- Best =" + best);
       System.out.println("SA ----- Curr =" + curr );
@@ -51,8 +51,8 @@ public class SimulatedAnnealing extends Optimizer{
     return new EvaluatedSamplePoint(curr, currE);
   }
 
-  private EvaluatedSamplePoint generateNewSample() {
-    SamplePoint newS = sampler.getSample();
+  private EvaluatedSamplePoint generateNewSample(SamplePoint curr, double tRatio) {
+    SamplePoint newS = sampler.getSample(curr, tRatio);
     double newE = func.eval(newS);
     return new EvaluatedSamplePoint(newS, newE);
   }
